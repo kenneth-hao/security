@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_ACCOUNT ID="1000" NAME="ac1000" PASSWORD="123456" DESCRIPTION="An account which is used for test!" STATE="1" CREATE_TIME="2014-09-07 00:00:00" />
+    <T_ACCOUNT ID="1001" NAME="ac1001" PASSWORD="123456" DESCRIPTION="An account which is used for test!" STATE="1" CREATE_TIME="2014-09-08 00:00:00" />
+    <T_ACCOUNT ID="1002" NAME="ac1002" PASSWORD="123456" DESCRIPTION="An account which is used for test!" STATE="0" CREATE_TIME="2014-09-08 01:01:01"/>
+</dataset>

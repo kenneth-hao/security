@@ -1,0 +1,9 @@
+.*
+/.*
+!.gitignore
+*.iml
+*/resources/xsd/*.xsd
+*.log
+*/logs/*.log.*
+*/target/*
+

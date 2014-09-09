@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.security.dao.AccountDao">
+
+    <sql id="columnPk">
+        ID
+    </sql>
+
+    <sql id="columnsExcludePk">
+        NAME,
+        PASSWORD,
+        DESCRIPTION,
+        STATE,
+        CREATE_TIME
+    </sql>
+
+    <sql id="tableName">
+        T_ACCOUNT
+    </sql>
+    
+    <resultMap id="accountResultMap" type="Account">
+        <id property="id" column="ID" javaType="Integer" />
+        <result property="name" column="NAME" javaType="String" />
+        <result property="password" column="PASSWORD" javaType="String" />
+        <result property="description" column="DESCRIPTION" javaType="String" />
+        <result property="state" column="STATE" javaType="Short" />
+        <result property="createTime" column="CREATE_TIME" javaType="Date" />
+    </resultMap>
+
+    <insert id="insert" parameterType="Account" keyProperty="id" useGeneratedKeys="true"
+            flushCache="true" timeout="20">
+        insert into <include refid="tableName" /> (
+          <include refid="columnsExcludePk" />
+        )
+        values
+        (
+          #{name},
+          #{password},
+          #{description},
+          #{state},
+          #{createTime}
+        )
+    </insert>
+
+    <update id="update" parameterType="Account" flushCache="true" timeout="20">
+        update <include refid="tableName" />
+          <set>
+              <if test="name != null">NAME=#{name},</if>
+              <if test="password != null">PASSWORD=#{password},</if>
+              <if test="description != null">DESCRIPTION=#{description},</if>
+              <if test="state != null">STATE=#{state},</if>
+              <if test="createTime != null">CREATE_TIME=#{createTime}</if>
+          </set>
+        where
+        <include refid="columnPk" />=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer" flushCache="true" timeout="20">
+        delete from
+        <include refid="tableName" />
+        where
+        <include refid="columnPk" />=#{id}
+    </delete>
+
+    <select id="queryById" parameterType="Integer" resultMap="accountResultMap">
+        select
+          <include refid="columnPk" />,
+          <include refid="columnsExcludePk" />
+        from
+          <include refid="tableName" />
+        where
+          <include refid="columnPk" />=#{id}
+    </select>
+
+</mapper>
