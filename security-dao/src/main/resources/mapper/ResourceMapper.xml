@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.security.dao.ResourceDao">
+
+    <sql id="columnPk">
+        R_ID
+    </sql>
+
+    <sql id="columnsExcludePk">
+        R_NAME,
+        R_KEY,
+        R_TYPE,
+        R_URL,
+        R_ORDER,
+        R_DESCRIPTION
+    </sql>
+
+    <sql id="tableName">
+        T_RESOURCE
+    </sql>
+    
+    <resultMap id="resourceResultMap" type="Resource">
+        <id property="id" column="R_ID" javaType="Integer" />
+        <result property="name" column="R_NAME" javaType="String" />
+        <result property="key" column="R_KEY" javaType="String" />
+        <result property="type" column="R_TYPE" javaType="Short" />
+        <result property="url" column="R_URL" javaType="String" />
+        <result property="order" column="R_ORDER" javaType="Short" />
+        <result property="description" column="R_DESCRIPTION" javaType="String" />
+    </resultMap>
+
+    <select id="queryByRoleId" parameterType="Integer" resultType="List" resultMap="resourceResultMap">
+        select
+        RE.<include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" /> RE
+        join
+        T_RESOURCE_ROLE RR
+        on
+        RE.<include refid="columnPk" /> = RR.RE_ID
+        where
+        RR.RO_ID=#{id}
+    </select>
+</mapper>

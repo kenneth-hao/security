@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:dflt="security">
+	<xsd:import namespace="security" schemaLocation="security.xsd" />
+	<xsd:element name="dataset">
+		<xsd:complexType>
+			<xsd:choice minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="dbmaintain_scripts" type="dflt:dbmaintain_scripts__type" />
+				<xsd:element name="T_ACCOUNT_ROLE" type="dflt:T_ACCOUNT_ROLE__type" />
+				<xsd:element name="T_ROLE" type="dflt:T_ROLE__type" />
+				<xsd:element name="T_RESOURCE_ROLE" type="dflt:T_RESOURCE_ROLE__type" />
+				<xsd:element name="T_ACCOUNT" type="dflt:T_ACCOUNT__type" />
+				<xsd:element name="T_RESOURCE" type="dflt:T_RESOURCE__type" />
+				<xsd:any namespace="security" />
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

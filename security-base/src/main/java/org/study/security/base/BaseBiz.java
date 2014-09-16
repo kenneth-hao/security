@@ -9,8 +9,4 @@ import java.io.Serializable;
  */
 public interface BaseBiz<E, VO, PK extends Serializable> {
 
-
-
-    Page<E> pagingObject(Page<E> page, VO valueObject);
-
 }

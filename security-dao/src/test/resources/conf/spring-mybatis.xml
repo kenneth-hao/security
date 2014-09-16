@@ -62,9 +62,9 @@
           p:mapperLocations="classpath:mapper/*.xml"/>
     <!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
 
-    <!-- spring与mybatis整合配置，扫描所有dao -->
+    <!-- spring与mybatis整合配置，扫描所有dao
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
           p:basePackage="org.study.security.dao"
           p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
-
+    -->
 </beans>

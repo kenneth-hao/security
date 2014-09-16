@@ -6,7 +6,11 @@ import org.study.security.base.impl.BaseBizImpl;
 import org.study.security.biz.AccountBiz;
 import org.study.security.dao.AccountDao;
 import org.study.security.entity.Account;
+import org.study.security.util.Page;
 import org.study.security.vo.AccountValueObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by haoyuewen on 9/9/14.
@@ -17,4 +21,15 @@ public class AccountBizImpl extends BaseBizImpl<Account, AccountValueObject, Int
     @Autowired
     private AccountDao accountDao;
 
+    @Override
+    public Page<Account> pagingObject(Page<Account> page, AccountValueObject valueObject) {
+        return accountDao.paging(page, valueObject);
+    }
+
+    @Override
+    public Account queryByName(String name) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("name", name);
+        return accountDao.queryOne(condition);
+    }
 }

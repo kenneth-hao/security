@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <T_ROLE R_ID="1000" R_NAME="ro1000" R_KEY="r1000" R_DESCRIPTION="An role which is used for test!" R_STATE="1" R_CREATE_TIME="2014-09-07 00:00:00" />
+    <T_ROLE R_ID="1001" R_NAME="ro1001" R_KEY="r1001" R_DESCRIPTION="An role which is used for test!" R_STATE="1" R_CREATE_TIME="2014-09-08 00:00:00" />
+    <T_ROLE R_ID="1002" R_NAME="ro1002" R_KEY="r1002" R_DESCRIPTION="An role which is used for test!" R_STATE="0" R_CREATE_TIME="2014-09-08 01:01:01"/>
+    <T_ACCOUNT_ROLE AR_ID="1000" A_ID="1000" R_ID="1000" />
+</dataset>

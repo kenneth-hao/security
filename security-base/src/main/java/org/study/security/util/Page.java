@@ -32,8 +32,12 @@ public class Page<T> extends BaseValueObject {
     }
 
     public Page(Integer pageSize, Integer pagination) {
-        this.pageSize = pageSize;
-        this.pagination = pagination;
+        if (pageSize != null) {
+            this.pageSize = pageSize;
+        }
+        if (pagination != null) {
+            this.pagination = pagination;
+        }
     }
 
     public Page(List<T> listObject, Long amountObject, Integer pageSize, Integer pagination) {

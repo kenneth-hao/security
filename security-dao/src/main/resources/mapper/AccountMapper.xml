@@ -5,15 +5,15 @@
 <mapper namespace="org.study.security.dao.AccountDao">
 
     <sql id="columnPk">
-        ID
+        A_ID
     </sql>
 
     <sql id="columnsExcludePk">
-        NAME,
-        PASSWORD,
-        DESCRIPTION,
-        STATE,
-        CREATE_TIME
+        A_NAME,
+        A_PASSWORD,
+        A_DESCRIPTION,
+        A_STATE,
+        A_CREATE_TIME
     </sql>
 
     <sql id="tableName">
@@ -21,12 +21,12 @@
     </sql>
     
     <resultMap id="accountResultMap" type="Account">
-        <id property="id" column="ID" javaType="Integer" />
-        <result property="name" column="NAME" javaType="String" />
-        <result property="password" column="PASSWORD" javaType="String" />
-        <result property="description" column="DESCRIPTION" javaType="String" />
-        <result property="state" column="STATE" javaType="Short" />
-        <result property="createTime" column="CREATE_TIME" javaType="Date" />
+        <id property="id" column="A_ID" javaType="Integer" />
+        <result property="name" column="A_NAME" javaType="String" />
+        <result property="password" column="A_PASSWORD" javaType="String" />
+        <result property="description" column="A_DESCRIPTION" javaType="String" />
+        <result property="state" column="A_STATE" javaType="Short" />
+        <result property="createTime" column="A_CREATE_TIME" javaType="Date" />
     </resultMap>
 
     <insert id="insert" parameterType="Account" keyProperty="id" useGeneratedKeys="true"
@@ -47,11 +47,10 @@
     <update id="update" parameterType="Account" flushCache="true" timeout="20">
         update <include refid="tableName" />
           <set>
-              <if test="name != null">NAME=#{name},</if>
-              <if test="password != null">PASSWORD=#{password},</if>
-              <if test="description != null">DESCRIPTION=#{description},</if>
-              <if test="state != null">STATE=#{state},</if>
-              <if test="createTime != null">CREATE_TIME=#{createTime}</if>
+              <if test="name != null">A_NAME=#{name},</if>
+              <if test="password != null">A_PASSWORD=#{password},</if>
+              <if test="description != null">A_DESCRIPTION=#{description},</if>
+              <if test="state != null">A_STATE=#{state}</if>
           </set>
         where
         <include refid="columnPk" />=#{id}
@@ -74,4 +73,46 @@
           <include refid="columnPk" />=#{id}
     </select>
 
+    <select id="count" parameterType="Map" resultType="Long">
+        select count(1)
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">A_NAME=#{name},</if>
+            <if test="password != null">A_PASSWORD=#{password},</if>
+            <if test="description != null">A_DESCRIPTION=#{description},</if>
+            <if test="state != null">A_STATE=#{state},</if>
+            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
+        </where>
+    </select>
+
+    <select id="query" parameterType="Map" resultType="List" resultMap="accountResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">A_NAME=#{name},</if>
+            <if test="password != null">A_PASSWORD=#{password},</if>
+            <if test="description != null">A_DESCRIPTION=#{description},</if>
+            <if test="state != null">A_STATE=#{state},</if>
+            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
+        </where>
+    </select>
+
+    <select id="queryOne" parameterType="Map" resultMap="accountResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">A_NAME=#{name},</if>
+            <if test="password != null">A_PASSWORD=#{password},</if>
+            <if test="description != null">A_DESCRIPTION=#{description},</if>
+            <if test="state != null">A_STATE=#{state},</if>
+            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
+        </where>
+    </select>
 </mapper>

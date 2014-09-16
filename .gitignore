@@ -4,6 +4,8 @@
 *.iml
 */resources/xsd/*.xsd
 *.log
-*/logs/*.log.*
+logs/*
+*/logs/*
+target/*
 */target/*
 

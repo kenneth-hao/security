@@ -29,7 +29,7 @@
     <!-- 扫描文件（自动注入） -->
     <context:component-scan base-package="org.study.security"/>
 
-    <util:properties id="commonConfig" location="classpath:conf/configConfig.properties" />
+    <util:properties id="commonConfig" location="classpath:conf/commonConfig.properties" />
 
     <import resource="spring-datasource.xml" />
 

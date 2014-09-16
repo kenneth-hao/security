@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.security.dao.RoleDao">
+
+    <sql id="columnPk">
+        R_ID
+    </sql>
+
+    <sql id="columnsExcludePk">
+        R_NAME,
+        R_KEY,
+        R_DESCRIPTION,
+        R_STATE,
+        R_CREATE_TIME,
+        R_UPDATE_TIME
+    </sql>
+
+    <sql id="tableName">
+        T_ROLE
+    </sql>
+    
+    <resultMap id="roleResultMap" type="Role">
+        <id property="id" column="R_ID" javaType="Integer" />
+        <result property="name" column="R_NAME" javaType="String" />
+        <result property="key" column="R_KEY" javaType="String" />
+        <result property="description" column="R_DESCRIPTION" javaType="String" />
+        <result property="state" column="R_STATE" javaType="Short" />
+        <result property="createTime" column="R_CREATE_TIME" javaType="Date" />
+        <result property="updateTime" column="R_UPDATE_TIME" javaType="Date" />
+    </resultMap>
+
+    <insert id="insert" parameterType="Role" keyProperty="id" useGeneratedKeys="true"
+            flushCache="true" timeout="20">
+        insert into <include refid="tableName" /> (
+          <include refid="columnsExcludePk" />
+        )
+        values
+        (
+          #{name},
+          #{key},
+          #{description},
+          #{state}
+        )
+    </insert>
+
+    <update id="update" parameterType="Role" flushCache="true" timeout="20">
+        update <include refid="tableName" />
+          <set>
+              <if test="name != null">R_NAME=#{name},</if>
+              <if test="key != null">R_KEY=#{key},</if>
+              <if test="description != null">R_DESCRIPTION=#{description},</if>
+              <if test="state != null">R_STATE=#{state}</if>
+          </set>
+        where
+        <include refid="columnPk" />=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer" flushCache="true" timeout="20">
+        delete from
+        <include refid="tableName" />
+        where
+        <include refid="columnPk" />=#{id}
+    </delete>
+
+    <select id="queryById" parameterType="Integer" resultMap="roleResultMap">
+        select
+          <include refid="columnPk" />,
+          <include refid="columnsExcludePk" />
+        from
+          <include refid="tableName" />
+        where
+          <include refid="columnPk" />=#{id}
+    </select>
+
+    <select id="count" parameterType="Map" resultType="Long">
+        select count(1)
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">R_NAME=#{name},</if>
+            <if test="key != null">R_KEY=#{key},</if>
+            <if test="description != null">R_DESCRIPTION=#{description},</if>
+            <if test="state != null">R_STATE=#{state},</if>
+        </where>
+    </select>
+
+    <select id="query" parameterType="Map" resultType="List">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">R_NAME=#{name},</if>
+            <if test="key != null">R_KEY=#{key},</if>
+            <if test="description != null">R_DESCRIPTION=#{description},</if>
+            <if test="state != null">R_STATE=#{state},</if>
+        </where>
+    </select>
+
+    <select id="queryOne" parameterType="Map" resultMap="roleResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+        <where>
+            <if test="name != null">R_NAME=#{name},</if>
+            <if test="key != null">R_KEY=#{key},</if>
+            <if test="description != null">R_DESCRIPTION=#{description},</if>
+            <if test="state != null">R_STATE=#{state},</if>
+        </where>
+    </select>
+
+    <select id="queryByAccountId" parameterType="Integer" resultType="List" resultMap="roleResultMap">
+        select
+        R.<include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" /> R
+        join
+        T_ACCOUNT_ROLE AR
+        on
+        R.<include refid="columnPk" /> = AR.R_ID
+        where
+          AR.A_ID=#{id}
+    </select>
+
+</mapper>

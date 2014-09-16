@@ -5,27 +5,24 @@ import org.study.security.base.BaseEntity;
 import java.util.Date;
 
 /**
- *
- *
- * Created by haoyuewen on 9/6/14.
+ * Created by haoyuewen on 9/16/14.
  */
-public class Account extends BaseEntity {
+public class Role extends BaseEntity {
 
     /**
-     * 账号状态 - 启用
+     * 状态 - 启用
      */
     public static final Short C_STATE_ON = 1;
 
     /**
-     * 账号状态 - 停用
+     * 状态 - 停用
      */
     public static final Short C_STATE_OFF = 0;
 
     /**
-     * 账号状态 - 逻辑删除
+     * 状态 - 逻辑删除
      */
     public static final Short C_STATE_DEL = 9;
-
 
     // <<< Field START >>>
 
@@ -33,11 +30,10 @@ public class Account extends BaseEntity {
 
     private String name;
 
-    private String password;
+    private String key;
 
     private String description;
-
-    // 账号状态
+    // 角色状态
     private Short state;
 
     private Date createTime;
@@ -45,6 +41,7 @@ public class Account extends BaseEntity {
     private Date updateTime;
 
     // <<< Field END >>>
+
 
     public Integer getId() {
         return id;
@@ -62,12 +59,12 @@ public class Account extends BaseEntity {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getKey() {
+        return key;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getDescription() {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="security" targetNamespace="security">
+	<xsd:element name="dbmaintain_scripts" type="dbmaintain_scripts__type" />
+	<xsd:element name="T_ACCOUNT_ROLE" type="T_ACCOUNT_ROLE__type" />
+	<xsd:element name="T_ROLE" type="T_ROLE__type" />
+	<xsd:element name="T_RESOURCE_ROLE" type="T_RESOURCE_ROLE__type" />
+	<xsd:element name="T_ACCOUNT" type="T_ACCOUNT__type" />
+	<xsd:element name="T_RESOURCE" type="T_RESOURCE__type" />
+	<xsd:complexType name="dbmaintain_scripts__type">
+		<xsd:attribute name="succeeded" use="optional" />
+		<xsd:attribute name="file_last_modified_at" use="optional" />
+		<xsd:attribute name="executed_at" use="optional" />
+		<xsd:attribute name="checksum" use="optional" />
+		<xsd:attribute name="file_name" use="optional" />
+		<xsd:attribute name="version" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="T_ACCOUNT_ROLE__type">
+		<xsd:attribute name="A_ID" use="optional" />
+		<xsd:attribute name="R_ID" use="optional" />
+		<xsd:attribute name="AR_ID" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="T_ROLE__type">
+		<xsd:attribute name="R_DESCRIPTION" use="optional" />
+		<xsd:attribute name="R_STATE" use="optional" />
+		<xsd:attribute name="R_UPDATE_TIME" use="optional" />
+		<xsd:attribute name="R_KEY" use="optional" />
+		<xsd:attribute name="R_ID" use="optional" />
+		<xsd:attribute name="R_NAME" use="optional" />
+		<xsd:attribute name="R_CREATE_TIME" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="T_RESOURCE_ROLE__type">
+		<xsd:attribute name="RE_ID" use="optional" />
+		<xsd:attribute name="RR_ID" use="optional" />
+		<xsd:attribute name="RO_ID" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="T_ACCOUNT__type">
+		<xsd:attribute name="A_UPDATE_TIME" use="optional" />
+		<xsd:attribute name="A_ID" use="optional" />
+		<xsd:attribute name="A_PASSWORD" use="optional" />
+		<xsd:attribute name="A_STATE" use="optional" />
+		<xsd:attribute name="A_CREATE_TIME" use="optional" />
+		<xsd:attribute name="A_NAME" use="optional" />
+		<xsd:attribute name="A_DESCRIPTION" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="T_RESOURCE__type">
+		<xsd:attribute name="R_DESCRIPTION" use="optional" />
+		<xsd:attribute name="R_KEY" use="optional" />
+		<xsd:attribute name="R_URL" use="optional" />
+		<xsd:attribute name="R_PARENT_ID" use="optional" />
+		<xsd:attribute name="R_ID" use="optional" />
+		<xsd:attribute name="R_ORDER" use="optional" />
+		<xsd:attribute name="R_TYPE" use="optional" />
+		<xsd:attribute name="R_NAME" use="optional" />
+	</xsd:complexType>
+</xsd:schema>

@@ -1,20 +1,29 @@
 package org.study.security.base.impl;
 
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.study.security.base.BaseDao;
+import org.study.security.constant.BaseDaoConstant;
+import org.study.security.util.Page;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by haoyuewen on 9/9/14.
  */
-@Repository
 public class BaseDaoImplBatis<E, VO, PK extends Serializable> extends SqlSessionDaoSupport implements BaseDao<E, VO, PK> {
+
+    @Autowired
+    @Override
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        super.setSqlSessionFactory(sqlSessionFactory);
+    }
 
     private Class<E> entityClass;
 
@@ -26,6 +35,7 @@ public class BaseDaoImplBatis<E, VO, PK extends Serializable> extends SqlSession
     private final static String SQLID_QUERY_ALL = "queryAll";
     private final static String SQLID_COUNT = "count";
     private final static String SQLID_QUERY = "query";
+    private final static String SQLID_QUERY_ONE = "queryOne";
 
     public BaseDaoImplBatis()  {
         Type genType = getClass().getGenericSuperclass();
@@ -68,15 +78,29 @@ public class BaseDaoImplBatis<E, VO, PK extends Serializable> extends SqlSession
         return getSqlSession().selectList(getStatement(SQLID_QUERY), condition);
     }
 
+    public E queryOne(Map<String, Object> condition) {
+        return getSqlSession().selectOne(getStatement(SQLID_QUERY_ONE), condition);
+    }
+
+    @Override
+    public Page<E> paging(Page<E> page, VO valueObject) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put(BaseDaoConstant.CONDITION_KEY_PAGE, page);
+        condition.put(BaseDaoConstant.CONDITION_KEY_VALUE_OBJECT, valueObject);
+        page.setAmountObject(count(condition));
+        page.setListObject(query(condition));
+        return page;
+    }
+
     protected String getStatement(String sqlId) {
         return getNamespace() + C_NAMESPACE_SEPARATOR + sqlId;
     }
 
     private String getNamespace() {
-        return entityClass.getName() + C_NAMESPACE_SUFFIX;
+        return this.getClass().getInterfaces()[0].getName() + C_NAMESPACE_SUFFIX;
     }
 
-    private static final String C_NAMESPACE_SUFFIX = "DAO";
+    private static final String C_NAMESPACE_SUFFIX = "";
 
     private static final String C_NAMESPACE_SEPARATOR = ".";
 }
