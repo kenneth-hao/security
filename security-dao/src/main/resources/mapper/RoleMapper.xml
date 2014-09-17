@@ -20,6 +20,15 @@
     <sql id="tableName">
         T_ROLE
     </sql>
+
+    <sql id="queryCommonWhere">
+        <where>
+            <if test="name != null">R_NAME=#{name},</if>
+            <if test="key != null">R_KEY=#{key},</if>
+            <if test="description != null">R_DESCRIPTION=#{description},</if>
+            <if test="state != null">R_STATE=#{state},</if>
+        </where>
+    </sql>
     
     <resultMap id="roleResultMap" type="Role">
         <id property="id" column="R_ID" javaType="Integer" />
@@ -78,12 +87,15 @@
         select count(1)
         from
         <include refid="tableName" />
-        <where>
-            <if test="name != null">R_NAME=#{name},</if>
-            <if test="key != null">R_KEY=#{key},</if>
-            <if test="description != null">R_DESCRIPTION=#{description},</if>
-            <if test="state != null">R_STATE=#{state},</if>
-        </where>
+        <include refid="queryCommonWhere" />
+    </select>
+
+    <select id="queryAll" resultType="List" resultMap="roleResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
     </select>
 
     <select id="query" parameterType="Map" resultType="List">
@@ -126,6 +138,20 @@
         R.<include refid="columnPk" /> = AR.R_ID
         where
           AR.A_ID=#{id}
+    </select>
+
+    <select id="queryByResourceId" parameterType="Integer" resultType="List" resultMap="roleResultMap">
+        select
+        RO.<include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" /> RO
+        join
+        T_RESOURCE_ROLE RR
+        on
+        RO.<include refid="columnPk" /> = RR.RO_ID
+        where
+        RR.RE_ID=#{id}
     </select>
 
 </mapper>

@@ -2,6 +2,8 @@ package org.study.security.base.impl;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.study.security.base.BaseDao;
 import org.study.security.constant.BaseDaoConstant;
@@ -18,6 +20,8 @@ import java.util.Map;
  * Created by haoyuewen on 9/9/14.
  */
 public class BaseDaoImplBatis<E, VO, PK extends Serializable> extends SqlSessionDaoSupport implements BaseDao<E, VO, PK> {
+
+    private static final Logger logger = LoggerFactory.getLogger(BaseDaoImplBatis.class);
 
     @Autowired
     @Override
@@ -37,10 +41,12 @@ public class BaseDaoImplBatis<E, VO, PK extends Serializable> extends SqlSession
     private final static String SQLID_QUERY = "query";
     private final static String SQLID_QUERY_ONE = "queryOne";
 
+    @SuppressWarnings(value = "unchecked")
     public BaseDaoImplBatis()  {
         Type genType = getClass().getGenericSuperclass();
         Type[] params = ((ParameterizedType)genType).getActualTypeArguments();
         entityClass = (Class<E>) params[0];
+        logger.info(String.format("加载泛型参数实体类型[%s]", entityClass.getName()));
     }
 
     @Override

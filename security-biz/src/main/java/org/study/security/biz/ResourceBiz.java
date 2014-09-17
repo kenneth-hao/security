@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ResourceBiz extends BaseBiz<Resource, Integer, ResourceValueObject> {
 
-    List<Resource> queryMenus();
+    List<Resource> queryAll();
 
     List<Resource> queryByRoleId(Integer id);
 }

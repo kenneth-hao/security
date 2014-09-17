@@ -19,6 +19,16 @@
     <sql id="tableName">
         T_ACCOUNT
     </sql>
+
+    <sql id="queryCommonWhere">
+        <where>
+            <if test="name != null">A_NAME=#{name}</if>
+            <if test="password != null">A_PASSWORD=#{password}</if>
+            <if test="description != null">A_DESCRIPTION=#{description}</if>
+            <if test="state != null">A_STATE=#{state}</if>
+            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
+        </where>
+    </sql>
     
     <resultMap id="accountResultMap" type="Account">
         <id property="id" column="A_ID" javaType="Integer" />
@@ -92,13 +102,7 @@
         <include refid="columnsExcludePk" />
         from
         <include refid="tableName" />
-        <where>
-            <if test="name != null">A_NAME=#{name},</if>
-            <if test="password != null">A_PASSWORD=#{password},</if>
-            <if test="description != null">A_DESCRIPTION=#{description},</if>
-            <if test="state != null">A_STATE=#{state},</if>
-            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
-        </where>
+        <include refid="queryCommonWhere" />
     </select>
 
     <select id="queryOne" parameterType="Map" resultMap="accountResultMap">
@@ -107,12 +111,6 @@
         <include refid="columnsExcludePk" />
         from
         <include refid="tableName" />
-        <where>
-            <if test="name != null">A_NAME=#{name},</if>
-            <if test="password != null">A_PASSWORD=#{password},</if>
-            <if test="description != null">A_DESCRIPTION=#{description},</if>
-            <if test="state != null">A_STATE=#{state},</if>
-            <if test="createTime != null">A_CREATE_TIME=#{createTime}</if>
-        </where>
+        <include refid="queryCommonWhere" />
     </select>
 </mapper>

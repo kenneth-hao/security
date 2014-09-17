@@ -24,4 +24,14 @@ public class RoleBizImpl extends BaseBizImpl<Role, RoleValueObject, Integer> imp
         return roleDao.queryByAccountId(id);
     }
 
+    @Override
+    public List<Role> queryByResourceId(Integer id) {
+        return roleDao.queryByResourceId(id);
+    }
+
+    @Override
+    public List<Role> queryAll() {
+        return roleDao.queryAll();
+    }
+
 }

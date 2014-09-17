@@ -31,6 +31,24 @@
         <result property="description" column="R_DESCRIPTION" javaType="String" />
     </resultMap>
 
+    <select id="queryAll" resultType="List" resultMap="resourceResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+    </select>
+
+    <select id="queryById" parameterType="Integer" resultMap="resourceResultMap">
+        select
+        <include refid="columnPk" />,
+        <include refid="columnsExcludePk" />
+        from
+        <include refid="tableName" />
+        where
+        <include refid="columnPk" />=#{id}
+    </select>
+
     <select id="queryByRoleId" parameterType="Integer" resultType="List" resultMap="resourceResultMap">
         select
         RE.<include refid="columnPk" />,

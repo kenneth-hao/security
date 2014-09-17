@@ -13,4 +13,8 @@ public interface RoleBiz extends BaseBiz<Role, RoleValueObject, Integer> {
 
     List<Role> queryByAccountId(Integer id);
 
+    List<Role> queryByResourceId(Integer id);
+
+    List<Role> queryAll();
+
 }

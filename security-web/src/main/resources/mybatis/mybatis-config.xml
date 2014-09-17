@@ -7,6 +7,8 @@
     <typeAliases>
         <typeAlias type="org.study.security.entity.Account" alias="Account" />
         <typeAlias type="org.study.security.vo.AccountValueObject" alias="AccountVo" />
+        <typeAlias type="org.study.security.entity.Role" alias="Role" />
+        <typeAlias type="org.study.security.entity.Resource" alias="Resource" />
     </typeAliases>
 
     <!-- 映射map -->

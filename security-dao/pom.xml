@@ -16,13 +16,13 @@
         <dependency>
             <groupId>org.study</groupId>
             <artifactId>security-entity</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.study</groupId>
             <artifactId>security-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>

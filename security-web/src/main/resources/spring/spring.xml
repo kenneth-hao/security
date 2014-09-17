@@ -27,7 +27,9 @@
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
 
     <!-- 扫描文件（自动注入） -->
-    <context:component-scan base-package="org.study.security"/>
+    <context:component-scan base-package="org.study.security.core" />
+    <context:component-scan base-package="org.study.security.dao" />
+    <context:component-scan base-package="org.study.security.biz" />
 
     <util:properties id="commonConfig" location="classpath:conf/commonConfig.properties" />
 

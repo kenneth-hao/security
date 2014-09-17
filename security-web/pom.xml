@@ -11,28 +11,17 @@
     <name>security-web Maven Webapp</name>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.study</groupId>
+            <artifactId>security-auth</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.study</groupId>
             <artifactId>security-entity</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.study</groupId>
-            <artifactId>security-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.study</groupId>
-            <artifactId>security-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.study</groupId>
-            <artifactId>security-biz</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

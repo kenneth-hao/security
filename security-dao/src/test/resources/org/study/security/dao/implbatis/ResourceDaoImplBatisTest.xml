@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-    <T_RESOURCE R_ID="1000" R_NAME="系统基础管理" R_KEY="sys" R_TYPE="0" R_URL="/sys" R_ORDER="0" R_DESCRIPTION="An resource which is used for test!" />
-    <T_RESOURCE R_ID="1001" R_NAME="账号管理" R_KEY="sys_acc" R_TYPE="1" R_URL="/account/list.html" R_ORDER="1" R_DESCRIPTION="An resource which is used for test!" />
-    <T_RESOURCE R_ID="1002" R_NAME="角色管理" R_KEY="sys_rol" R_TYPE="1" R_URL="/role/list.html" R_ORDER="2" R_DESCRIPTION="An resource which is used for test!" />
-    <T_RESOURCE_ROLE RR_ID="1000" RE_ID="1000" RO_ID="1000" />
+    <T_RESOURCE R_ID="1000" R_NAME="首页" R_KEY="index" R_TYPE="0" R_URL="/index.html" R_ORDER="0" R_DESCRIPTION="An resource which is used for test!" />
+    <T_RESOURCE R_ID="1001" R_NAME="系统基础管理" R_KEY="sys" R_TYPE="0" R_URL="/sys.html" R_ORDER="1" R_DESCRIPTION="An resource which is used for test!" />
+    <T_RESOURCE R_ID="1002" R_NAME="账号管理" R_KEY="sys_acc_manage" R_TYPE="1" R_URL="/account/manage.html" R_ORDER="2" R_DESCRIPTION="An resource which is used for test!" />
+    <T_RESOURCE R_ID="1003" R_NAME="账号查询" R_KEY="sys_acc_paging" R_TYPE="1" R_URL="/account/paging.html" R_ORDER="3" R_DESCRIPTION="An resource which is used for test!" />
+    <T_RESOURCE R_ID="1004" R_NAME="角色管理" R_KEY="sys_rol_manage" R_TYPE="1" R_URL="/role/manage.html" R_ORDER="4" R_DESCRIPTION="An resource which is used for test!" />
+    <T_RESOURCE_ROLE RR_ID="1000" RE_ID="1001" RO_ID="1000" />
+    <T_RESOURCE_ROLE RR_ID="1001" RE_ID="1002" RO_ID="1000" />
+    <T_RESOURCE_ROLE RR_ID="1002" RE_ID="1003" RO_ID="1000" />
 </dataset>

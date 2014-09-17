@@ -17,4 +17,9 @@ public class RoleDaoImplBatis extends BaseDaoImplBatis<Role, RoleValueObject, In
     public List<Role> queryByAccountId(Integer id) {
         return getSqlSession().selectList(getStatement("queryByAccountId"), id);
     }
+
+    @Override
+    public List<Role> queryByResourceId(Integer id) {
+        return getSqlSession().selectList(getStatement("queryByResourceId"), id);
+    }
 }
