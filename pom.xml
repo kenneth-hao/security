@@ -14,7 +14,7 @@
         <module>security-base</module>
         <module>security-biz</module>
         <module>security-web</module>
-        <module>security-until</module>
+        <module>security-util</module>
         <module>security-auth</module>
     </modules>
 
